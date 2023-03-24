@@ -1,0 +1,34 @@
+package:
+  id: gst-plugins-bad1.0
+  name: gst-plugins-bad1.0
+  version: 1.14.4.2
+  kind: lib
+  discription: |
+    gst plugins.
+
+base:
+  id: org.deepin.base
+  version: 20.5.0
+
+#pkg-kde-tools gettext graphviz 
+depends:
+- id: gstreamer1.0
+  version: 1.14.6
+
+source:
+  kind: git
+  url: https://github.com/deepin-community/gst-plugins-bad1.0.git
+  version: master
+  commit: 62c1320806de1f20eb3539f2d9c63fc6213b9e76
+  patch:
+  - 02_opencv-data-path.patch
+variables:
+  extra_args: |
+    --disable-examples \
+    --enable-DEBUG \
+    --enable-debug \
+    --disable-gtk-doc \
+    --disable-pvr
+
+build:
+  kind: autotools
